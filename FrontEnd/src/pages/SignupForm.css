@@ -21,7 +21,7 @@
   padding: 40px;
   border-radius: 10px; /* Bordas levemente arredondadas no container principal */
   width: 100%;
-  max-width: 450px;
+  max-width: 750px;
   display: flex;
   flex-direction: column;
   align-items: center;

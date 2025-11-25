@@ -1,0 +1,19 @@
+.app-logo {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700; /* Negrito forte */
+  font-size: 2rem;  /* Tamanho da fonte (ajuste conforme necessário) */
+  letter-spacing: -0.5px; /* As letras são levemente juntinhas */
+  margin: 0; /* Remove margens padrão de navegador */
+  line-height: 1; /* Garante que não tenha espaço extra acima/abaixo */
+  cursor: default; /* O mouse não vira mãozinha */
+}
+
+/* A cor verde limão */
+.logo-watt {
+  color: #c4f02a; /* Usei o mesmo verde dos botões anteriores */
+}
+
+/* A cor cinza claro */
+.logo-solutions {
+  color: #000000; /* Um cinza médio agradável no fundo escuro */
+}

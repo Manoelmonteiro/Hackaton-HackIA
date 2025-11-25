@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignupForm.css'; 
+import Logo from '../components/logo'
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -44,6 +45,10 @@ const SignupForm = () => {
     return (
         <div className="container">
             <div className="card">
+                <div style={{ marginBottom: '-25px', marginLeft: '-400px' }}>
+                    <Logo />
+                </div>
+
                 <h2 className="title">Crie sua Conta</h2>
                 
                 <form onSubmit={handleSubmit} className="form">
