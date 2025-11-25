@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignupForm.css'; 
-import Logo from '../components/logo'
+import Logo from '../components/Logo'; // Certifique-se que o nome do arquivo bate com o import
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ const SignupForm = () => {
     
     const [formData, setFormData] = useState({
         nome: '',
-        tipoConta: '',
+        tipoConta: '', // O valor aqui será 'pessoal' ou 'empresarial'
         senha: ''
     });
 
@@ -23,6 +23,7 @@ const SignupForm = () => {
         e.preventDefault();
         setErro(''); 
 
+        // Validações
         if (!formData.nome || !formData.senha || !formData.tipoConta) {
             setErro("Por favor, preencha todos os campos!");
             return;
@@ -38,21 +39,29 @@ const SignupForm = () => {
             return;
         }
     
-        console.log("Dados válidos! Enviando...", formData);
-        navigate('/dashboard'); 
+        console.log("Dados válidos! Redirecionando...", formData);
+
+        // --- AQUI ESTÁ A MUDANÇA ---
+        // Verifica o que o usuário escolheu no select e manda para a rota certa
+        if (formData.tipoConta === 'empresarial') {
+            navigate('/dashboard-pj');
+        } else {
+            // Se for 'pessoal' (ou qualquer outro caso), vai para o PF
+            navigate('/dashboard-pf');
+        }
     };
 
     return (
         <div className="container">
             <div className="card">
-                <div style={{ marginBottom: '-25px', marginLeft: '-400px' }}>
+                {/* Ajuste de estilo da logo para ficar centralizada */}
+                <div style={{ marginBottom: '20px', width: '100%', textAlign: 'center' }}>
                     <Logo />
                 </div>
 
                 <h2 className="title">Crie sua Conta</h2>
                 
                 <form onSubmit={handleSubmit} className="form">
-                    {/* Input Nome */}
                     <input
                         type="text"
                         name="nome"
@@ -62,7 +71,6 @@ const SignupForm = () => {
                         onChange={handleChange}
                     />
 
-                    {/* Select Tipo de Conta */}
                     <div className="select-wrapper">
                         <select
                             name="tipoConta"
@@ -71,12 +79,12 @@ const SignupForm = () => {
                             onChange={handleChange}
                         >
                             <option value="" disabled hidden>Tipo de Conta ⌄</option>
+                            {/* Os valores 'value' aqui devem bater com o if lá em cima */}
                             <option value="pessoal">Pessoa Física</option>
                             <option value="empresarial">Pessoa Jurídica</option>
                         </select>
                     </div>
 
-                    {/* Input Senha */}
                     <input
                         type="password"
                         name="senha"
@@ -86,14 +94,12 @@ const SignupForm = () => {
                         onChange={handleChange}
                     />
 
-                    {/* 3. Área para EXIBIR o erro na tela para o usuário */}
                     {erro && (
                         <p style={{ color: '#ff4d4d', fontSize: '0.9rem', textAlign: 'center' }}>
                             {erro}
                         </p>
                     )}
 
-                    {/* Botão Cadastrar */}
                     <button type="submit" className="submit-btn">
                         Cadastrar
                     </button>
