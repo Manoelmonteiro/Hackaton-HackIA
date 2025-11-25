@@ -9,9 +9,8 @@ def plota_grafico(arquivo):
 
     print("Colunas detectadas:", df.columns.tolist())
 
-    plt.style.use('dark_background')
-    plt.figure(figsize=(12, 6))
-    plt.bar(df["aparelhos"], df["consumo de energia"])
+    plt.figure(figsize=(12, 6), facecolor='white')
+    plt.bar(df["aparelhos"], df["consumo de energia"], color='#AFF21D')
 
     plt.title("Consumo por aparelho")
     plt.xlabel("Aparelho elétrico")
@@ -38,3 +37,6 @@ def adicionar_linha_no_csv(arquivo, nova_linha):
     df.to_csv(arquivo, index=False, encoding="utf-8-sig")
 
     return "Linha adicionada com sucesso!"
+
+
+plota_grafico(arquivo)
