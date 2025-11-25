@@ -1,56 +1,34 @@
-import pandas as pd
-import matplotlib.pyplot as plt
+from fastapi import FastAPI
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
-arquivo = "../equipamentos_eletricos.csv"
-def plota_grafico(arquivo):
-    # Leitura robusta do CSV (remove BOM e caracteres invisíveis)
-    df = pd.read_csv(arquivo, sep=',', engine='python', encoding="utf-8-sig")
+from graficos import criar_linha, adicionar_linha_no_csv, plota_grafico, arquivo
 
-    # Remove espaços, tabulações e caracteres ocultos nas colunas
-    df.columns = df.columns.str.strip()
+app = FastAPI()
 
-    # Exibe para confirmar os nomes reais
-    print("Colunas detectadas pelo pandas:", df.columns.tolist())
+class AttGrafico(BaseModel):
+    aparelho: str
+    consumo: float
 
-    # Gráfico
-    plt.style.use('dark_background')
-    plt.figure(figsize=(12, 6))
-    plt.bar(df["aparelhos"], df["consumo de energia"])
+@app.post("/atualizar")
+def atualizar_grafico(dados: AttGrafico):
+    nova_linha = criar_linha(dados.aparelho, dados.consumo)
 
-    plt.title("Consumo por aparelho")
-    plt.xlabel("Aparelho elétrico")
-    plt.ylabel("Consumo kW/h")
-    plt.xticks(rotation=45, ha='right')
-    plt.tight_layout()
+    msg_csv = adicionar_linha_no_csv(arquivo, nova_linha)
+    msg_grafico = plota_grafico(arquivo)
 
-    # Salva o gráfico em arquivo
-    plt.savefig("grafico_aparelhos.png")
-
-    print("Gráfico salvo como grafico_aparelhos.png")
-
-
-def entradas():
-    aparelho = input("Nome do aparelho: ")
-    consumo = input("Consumo de energia (kWh): ")
-
-    nova_linha = {
-    "aparelhos": aparelho,
-    "consumo de energia": consumo
+    return {
+        "status": "ok",
+        "csv": msg_csv,
+        "grafico": msg_grafico
     }
 
-    return nova_linha
-
-def recebe_linha_arquivo(arquivo, atualiza_grafico):
-    df = pd.read_csv(arquivo)
-
-    # Adiciona a nova linha
-    df = pd.concat([df, pd.DataFrame([atualiza_grafico])], ignore_index=True)
-
-    # Salva de volta
-    df.to_csv(arquivo, index=False)
-
-    plota_grafico(arquivo)
-
-
-recebe_linha_arquivo(arquivo, entradas())
+# Liberar frontend para chamar a API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
