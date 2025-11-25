@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-arquivo = "equipamentos_eletricos.csv"
+arquivo = "../equipamentos_eletricos.csv"
 def plota_grafico(arquivo):
     # Leitura robusta do CSV (remove BOM e caracteres invisíveis)
     df = pd.read_csv(arquivo, sep=',', engine='python', encoding="utf-8-sig")
@@ -13,6 +13,7 @@ def plota_grafico(arquivo):
     print("Colunas detectadas pelo pandas:", df.columns.tolist())
 
     # Gráfico
+    plt.style.use('dark_background')
     plt.figure(figsize=(12, 6))
     plt.bar(df["aparelhos"], df["consumo de energia"])
 
