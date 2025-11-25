@@ -23,6 +23,10 @@ def atualizar_grafico(dados: AttGrafico):
         "grafico": msg_grafico
     }
 
+@app.get("/")
+def home():
+    return {"status": "ok"}
+
 # Liberar frontend para chamar a API
 app.add_middleware(
     CORSMiddleware,
