@@ -1,25 +1,2 @@
-Com certeza! Como CSV Creator, vou gerar um arquivo CSV com dados fictícios de vendas, garantindo que seja limpo e consistente.
 
-Aqui está o conteúdo do seu arquivo CSV:
 
-```csv
-produto,quantidade,preco
-Laptop Gamer,1,5500.00
-Mouse Óptico,5,75.50
-Teclado Mecânico,2,320.00
-Monitor Ultrawide,1,1800.00
-Webcam Full HD,3,150.99
-Headset Gamer,2,450.00
-SSD 1TB,1,600.00
-HD Externo 2TB,1,350.00
-Roteador Wi-Fi 6,1,280.00
-Cadeira Ergonômica,1,900.00
-```
-
-**Instruções para salvar:**
-
-1.  Copie todo o texto acima, incluindo a linha de cabeçalho.
-2.  Cole em um editor de texto simples (como Bloco de Notas no Windows, TextEdit no Mac, ou qualquer editor de código).
-3.  Salve o arquivo com um nome como `vendas_ficticias.csv`. Certifique-se de que a extensão seja `.csv`.
-
-Se precisar de mais linhas, tipos de dados diferentes, ou alguma validação específica, é só me dizer!
