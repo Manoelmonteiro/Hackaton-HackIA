@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
 
 from graficos import criar_linha, adicionar_linha_no_csv, plota_grafico, arquivo
 
 app = FastAPI()
 
+
+app.mount("/static", StaticFiles(directory="."), name="static")
 class AttGrafico(BaseModel):
     aparelho: str
     consumo: float
