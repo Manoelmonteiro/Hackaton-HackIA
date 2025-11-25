@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+#from fastapi.responses import FileResponse
 import os
 
 from analise_csv import analisa_csv
@@ -36,26 +36,6 @@ def atualizar_grafico(dados: AttGrafico):
 def home():
     return {"status": "ok"}
 
-
-@app.post("/gerar-relatorio")
-def gerar_relatorio(dados: CSVRequest):
-
-    # 1️⃣ Gera o PDF via Mangaba
-    saida = analisa_csv(dados.arquivo)
-
-    # O output_file configurado no Task é:
-    pdf_path = "analiseEletrico_csv.pdf"
-
-    # 2️⃣ Confirma que o arquivo foi realmente criado
-    if not os.path.exists(pdf_path):
-        return {"erro": "PDF não foi gerado."}
-
-    # 3️⃣ Retorna o PDF para download
-    return FileResponse(
-        path=pdf_path,
-        filename="relatorio_eletrico.pdf",
-        media_type="application/pdf"
-    )
 
 # Liberar frontend para chamar a API
 app.add_middleware(

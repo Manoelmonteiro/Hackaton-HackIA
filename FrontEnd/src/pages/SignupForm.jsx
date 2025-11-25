@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignupForm.css'; 
-import Logo from '../components/Logo'; // Certifique-se que o nome do arquivo bate com o import
+import Logo from '../components/logo'; // Certifique-se que o nome do arquivo bate com o import
 
 const SignupForm = () => {
     const navigate = useNavigate();
