@@ -22,7 +22,7 @@ create_csv_task = Task(
     description="Gerar um arquivo CSV contendo dados fictícios de consumo de energia (aparelhos, consumo de energia ).",
     expected_output="CSV criado com colunas: aparelhos, consumo de energia ",
     agent=csv_creator,
-    output_file="equipamentos_eletricos.csv"
+    output_file="/backend/equipamentos_eletricos.csv"
 )
 
 analyze_csv_task = Task(
@@ -30,7 +30,7 @@ analyze_csv_task = Task(
     expected_output="Relatório detalhado sobre os dados do CSV.",
     agent=csv_analyst,
     context=[create_csv_task],  # usa como contexto o CSV criado
-    output_file="analiseEletrico_csv.md"
+    output_file="analiseEletrico_csv.pdf"
 )
 
 # ==== CREW ====
@@ -42,5 +42,13 @@ crew = Crew(
     verbose=True
 )
 
-result = crew.kickoff()
-print(result.final_output)
+crew_analise= Crew(
+    agents=[csv_analyst],
+    tasks=[analyze_csv_task],
+    process=Process.SEQUENTIAL,
+    verbose=True
+)
+
+
+result_ana = crew_analise.kickoff()
+print(result_ana.final_output)

@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import glob 
 
 arquivo = "../equipamentos_eletricos.csv"
 
@@ -37,6 +38,17 @@ def adicionar_linha_no_csv(arquivo, nova_linha):
     df.to_csv(arquivo, index=False, encoding="utf-8-sig")
 
     return "Linha adicionada com sucesso!"
+
+
+def procura_png():
+
+    arquivos = glob.glob("*.png")  
+    if not arquivos:
+        raise FileNotFoundError("Nenhum arquivo .png encontrado")   
+
+    input_file = arquivos[0]
+
+    return input_file
 
 
 plota_grafico(arquivo)
