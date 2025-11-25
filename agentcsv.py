@@ -5,7 +5,7 @@ from mangaba import Agent, Task, Crew, Process
 csv_creator = Agent(
     role="CSV Creator",
     goal="Gerar, organizar e validar arquivos CSV",
-    backstory="Especialista em manipulação de dados estruturados e criação de CSVs limpos e consistentes, nao deve ter nada alem dos dados da tabela.",
+    backstory="Especialista em manipulação de dados estruturados e criação de CSVs limpos e consistentes, nao deve ter nada alem dos dados da tabela, tambem tire o inicio com ```csv e o fim ```",
     verbose=True
 )
 

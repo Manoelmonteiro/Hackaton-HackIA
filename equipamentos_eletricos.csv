@@ -1,13 +1,19 @@
-```csv
 aparelhos,consumo de energia
-Geladeira,120
-Televisão,60
-Máquina de Lavar,150
-Computador,80
-Forno Elétrico,180
-Ar Condicionado,250
-Chuveiro Elétrico,300
-Micro-ondas,100
-Ferro de Passar,90
-Lâmpadas (total),50
-```
+Geladeira,60.5
+Televisao,25.3
+Maquina de Lavar,15.8
+Ar Condicionado,120.0
+Chuveiro Eletrico,85.2
+Computador Desktop,40.7
+Micro-ondas,10.1
+Ferro de Passar,8.5
+Secadora de Roupa,35.9
+Lâmpadas LED (total),12.0
+Cooktop Elétrico,50.0
+Forno Elétrico,30.0
+Aspirador de Pó,5.0
+Cafeteira,3.5
+Torradeira,2.0
+lamparina,17.0
+banana,13.0
+abacate,15
