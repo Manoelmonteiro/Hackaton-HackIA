@@ -66,8 +66,8 @@ const SignupForm = () => {
                             onChange={handleChange}
                         >
                             <option value="" disabled hidden>Tipo de Conta ⌄</option>
-                            <option value="pessoal">Pessoal</option>
-                            <option value="empresarial">Empresarial</option>
+                            <option value="pessoal">Pessoa Física</option>
+                            <option value="empresarial">Pessoa Jurídica</option>
                         </select>
                     </div>
 
